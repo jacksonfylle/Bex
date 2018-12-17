@@ -17,8 +17,7 @@ LOGGER.setLevel(logging.INFO)
 
 program_name = './binary_test/testFuzz10'
 
-
-def send_to_fuzz(exploration_memory, exploration_registers, from_memory_addr, dst_addr, q):
+def send_to_fuzz(entrypoint, exploration_memory, exploration_registers, from_memory_addr, dst_addr, q):
     """send a request to the fuzzer
 
     :param dst_addr (int): The destination address you wishe to reach
@@ -43,12 +42,13 @@ def send_to_fuzz(exploration_memory, exploration_registers, from_memory_addr, ds
     fuzzer.add_memory_callback(fuzz.fuzz_memory)
     fuzzer.add_register_callback(fuzz.fuzz_register)
 
-    p = multiprocessing.Process(target=fuzzer.start, args=(ctx, 30))
+    p = multiprocessing.Process(target=fuzzer.start, args=(ctx, 30, entrypoint))
     # return [p,ctx,fuzzer, exploration_memory]
     return p
 
 
 def main():
+    entrypoint = 0x401094
     fuzzed_address = set()
     queue = multiprocessing.Queue()
     process = list()
@@ -70,14 +70,14 @@ def main():
     tracer.add_register_callback(exploration.symbolized_register_input)
 
     for i in range(30):
-        tracer.start(ctx, 1)
+        tracer.start(ctx, 1, entrypoint)
 
         if exploration.fuzz_is_needed is True:
             untaken_branch = set(exploration.get_untaken_branch())
             for i in untaken_branch:
                 if i not in fuzzed_address:
                     if exploration.untaken_branch[i] != 0:
-                        process.append(send_to_fuzz(copy.deepcopy(exploration.exploration_memory),
+                        process.append(send_to_fuzz(entrypoint, copy.deepcopy(exploration.exploration_memory),
                                                     copy.deepcopy(exploration.exploration_registers),
                                                     copy.copy(exploration.untaken_branch[i]), i, queue))
                         process[-1].start()

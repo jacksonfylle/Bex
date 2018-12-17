@@ -13,7 +13,6 @@ If Triton cannot find a different path, and if some branch or still untrace, it 
 + [ ] possibility to add sevral callback
 + [ ] add the strategy, maximized the symbolic variable number per inputs. Set a bigger default value ? What about loops ?
 + [ ] Concretize everything in the fuzzer
-+ [ ] set proper entrypont offset
 + [ ] Tracer, multiprocess log only if neeeded
 
 ## Example output
