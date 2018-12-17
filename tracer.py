@@ -159,7 +159,7 @@ class Tracer(object):
             if entrypoint:
                 pc = entrypoint
             else:
-                pc = self.binary.entrypoint + 4
+                pc = self.binary.entrypoint
             ret_value = self.emulate(ctx, pc)
             if ret_value < 0:
                 break
