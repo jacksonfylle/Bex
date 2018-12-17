@@ -16,7 +16,7 @@ If Triton cannot find a different path, and if some branch or still untrace, it 
 + [ ] set proper entrypont offset
 + [ ] Tracer, multiprocess log only if neeeded
 
-
+## Example output
 ```bash
 dst_addr : 0x0, is_taken : True, unreach : False, fuzz : False, copy_from : 0x0
 dst_addr : 0x4011ad, is_taken : True, unreach : False, fuzz : False
