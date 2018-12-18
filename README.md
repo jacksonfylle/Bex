@@ -17,7 +17,7 @@ If Triton cannot find a different path, and if some branch or still untrace, it 
 
 ## test
 ```
-python2.7 commands.py
+python2.7 ./command.py
 ```
 
 ## Example output
