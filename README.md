@@ -15,6 +15,11 @@ If Triton cannot find a different path, and if some branch or still untrace, it 
 + [ ] Concretize everything in the fuzzer
 + [ ] Tracer, multiprocess log only if neeeded
 
+## test
+```
+python2.7 commands.py
+```
+
 ## Example output
 ```bash
 dst_addr : 0x0, is_taken : True, unreach : False, fuzz : False, copy_from : 0x0
