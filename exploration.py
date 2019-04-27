@@ -3,7 +3,7 @@ from collections import OrderedDict, Counter
 from termcolor import colored
 import json
 import time
-from triton import SYMEXPR, MemoryAccess, CPUSIZE, TritonContext, ARCH, MODE, AST_REPRESENTATION
+from triton import SYMBOLIC, MemoryAccess, CPUSIZE, TritonContext, ARCH, MODE, AST_REPRESENTATION
 from tracer import Tracer
 from fuzz import Fuzz
 from pwn import unordlist, ordlist, pause
@@ -285,7 +285,7 @@ class Exploration(object):
 
                             # Add constraint on sym_var
                             for symName, node in self.added_constraint_node.items():
-                                if str(ctx.unrollAst(branch['constraint'])).find(symName) != -1 or str(ctx.unrollAst(previous_constraints)).find(symName) != -1:
+                                if str(ctx.getAstContext().unrollAst(branch['constraint'])).find(symName) != -1 or str(ctx.getAstContext().unrollAst(previous_constraints)).find(symName) != -1:
                                     # add node to constraint
                                     nodeList.append(node)
 
@@ -297,8 +297,8 @@ class Exploration(object):
                                     # Get the symbolic variable assigned to the model
                                     sym_var = ctx.getSymbolicVariableFromId(k)
                                     json_comment = json.loads(sym_var.getComment())
-                                    seed.setdefault(branch['dstAddr'], {}).update({sym_var.getKindValue(): v.getValue()})
-                                    if sym_var.getKind() == SYMEXPR.REG:
+                                    seed.setdefault(branch['dstAddr'], {}).update({sym_var.getOrigin(): v.getValue()})
+                                    if sym_var.getType() == SYMBOLIC.REGISTER_VARIABLE:
                                         if json_comment['base_addr']:
                                             # Need to convert Symbolic Register to Symbolic Mem (examples atoi)
                                             try:
@@ -313,13 +313,13 @@ class Exploration(object):
                                             # fgetc like function
                                             # {4198988L: {'call_addr': {4198922:{'loop_round': {1: {'register': 1L, 'values': 10L}}}}, 'is_taken': False, 'lastBranch': 4198914L, 'loop': False}}
                                             self.exploration_registers.setdefault(branch['dstAddr'], dict()).setdefault('call_addr', dict()).setdefault(json_comment['last_call_address'], dict()).setdefault('loop_round', dict()).setdefault(json_comment['loop_round'], dict()).update({'values': v.getValue()})
-                                            self.exploration_registers.setdefault(branch['dstAddr'], dict()).setdefault('call_addr', dict()).setdefault(json_comment['last_call_address'], dict()).setdefault('loop_round', dict()).setdefault(json_comment['loop_round'], dict()).update({'register': sym_var.getKindValue()})
+                                            self.exploration_registers.setdefault(branch['dstAddr'], dict()).setdefault('call_addr', dict()).setdefault(json_comment['last_call_address'], dict()).setdefault('loop_round', dict()).setdefault(json_comment['loop_round'], dict()).update({'register': sym_var.getOrigin()})
                                             self.exploration_registers.setdefault(branch['dstAddr'], dict()).update({'is_taken': False, 'unreachable': False, 'copy_from': False, 'fuzz': False})
                                     else:
                                         # sym_var.getKind() == SYMEXPR.MEM
                                         # {4199072L: {'call_addr': {4198584: {'base_addr': {536936448: {'sym_vars_addr': OrderedDict([(536936449L, {'kind': 2, 'values': {0: 117L}, 'base_addr': 536936448})])}}}}, 'is_taken': False, 'loop_round': 0, 'loop': False}}
-                                        self.exploration_memory.setdefault(branch['dstAddr'], dict()).setdefault('call_addr', dict()).setdefault(json_comment['last_call_address'], dict()).setdefault('base_addr', dict()).setdefault(json_comment['base_addr'], dict()).setdefault('sym_vars_addr', OrderedDict()).setdefault(sym_var.getKindValue(), {}).setdefault('values', dict()).update({i: v.getValue()})
-                                        self.exploration_memory.setdefault(branch['dstAddr'], dict()).setdefault('call_addr', dict()).setdefault(json_comment['last_call_address'], dict()).setdefault('base_addr', dict()).setdefault(json_comment['base_addr'], dict()).setdefault('sym_vars_addr', OrderedDict()).setdefault(sym_var.getKindValue(), {}).update({'base_addr': json_comment['base_addr'], 'kind': 2})
+                                        self.exploration_memory.setdefault(branch['dstAddr'], dict()).setdefault('call_addr', dict()).setdefault(json_comment['last_call_address'], dict()).setdefault('base_addr', dict()).setdefault(json_comment['base_addr'], dict()).setdefault('sym_vars_addr', OrderedDict()).setdefault(sym_var.getOrigin(), {}).setdefault('values', dict()).update({i: v.getValue()})
+                                        self.exploration_memory.setdefault(branch['dstAddr'], dict()).setdefault('call_addr', dict()).setdefault(json_comment['last_call_address'], dict()).setdefault('base_addr', dict()).setdefault(json_comment['base_addr'], dict()).setdefault('sym_vars_addr', OrderedDict()).setdefault(sym_var.getOrigin(), {}).update({'base_addr': json_comment['base_addr'], 'kind': 2})
                                         self.exploration_memory.setdefault(branch['dstAddr'], dict()).update({'is_taken': False, 'loop_round': json_comment['loop_round'], 'unreachable': False, 'copy_from': False, 'fuzz': False})
                             try:
                                 self.show_exploration(branch['dstAddr'])

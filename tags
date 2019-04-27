@@ -1,0 +1,98 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/45968eff/
+BASE_ALLOC	tracer.py	/^BASE_ALLOC = 0X30000000$/;"	v
+BASE_ARGV	tracer.py	/^BASE_ARGV = 0X20000000$/;"	v
+BASE_FAIL	tracer.py	/^BASE_FAIL = 0X40000000$/;"	v
+BASE_PLT	tracer.py	/^BASE_PLT = 0X10000000$/;"	v
+BASE_STACK	tracer.py	/^BASE_STACK = 0X9FFFFFFF$/;"	v
+Bex	README.md	/^# Bex$/;"	c
+Example output	README.md	/^## Example output$/;"	s
+Exploration	exploration.py	/^class Exploration(object):$/;"	c
+Fuzz	fuzz.py	/^class Fuzz():$/;"	c
+LOGGER	command.py	/^LOGGER = logging.getLogger(__name__)$/;"	v
+LOGGER	exploration.py	/^LOGGER = logging.getLogger(__name__)$/;"	v
+LOGGER	fuzz.py	/^LOGGER = logging.getLogger(__name__)$/;"	v
+LOGGER	tracer.py	/^LOGGER = logging.getLogger(__name__)$/;"	v
+Requierements	README.md	/^# Requierements$/;"	c
+Todo	README.md	/^## Todo$/;"	s
+Tracer	tracer.py	/^class Tracer(object):$/;"	c
+__init__	exploration.py	/^    def __init__(self):$/;"	m	class:Exploration
+__init__	fuzz.py	/^    def __init__(self, exploration_memory, exploration_registers, from_memory_addr, dst_addr, qu/;"	m	class:Fuzz
+__init__	tracer.py	/^    def __init__(self, program_name, symbolized_input):$/;"	m	class:Tracer
+_add_sym_vars_constraint	exploration.py	/^    def _add_sym_vars_constraint(self, ctx, last_call_address, sym_var, min_value, max_value):$/;"	m	class:Exploration
+_all_combinations	fuzz.py	/^    def _all_combinations(self, iterable):$/;"	m	class:Fuzz
+_atoi_handler	tracer.py	/^    def _atoi_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_convert_memory_fuzzing_inputs	exploration.py	/^    def _convert_memory_fuzzing_inputs(self, dst_address, call_addr, base_addr, values, loop_rou/;"	m	class:Exploration
+_convert_registers_fuzzing_inputs	exploration.py	/^    def _convert_registers_fuzzing_inputs(self, dst_address, call_addr, values, loop_round):$/;"	m	class:Exploration
+_count_loop	tracer.py	/^    def _count_loop(self, last_call_instruction=None):$/;"	m	class:Tracer
+_fgetc_handler	tracer.py	/^    def _fgetc_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_get_format_string	tracer.py	/^    def _get_format_string(self, ctx, addr):$/;"	m	class:Tracer
+_get_memory_string	tracer.py	/^    def _get_memory_string(self, ctx, addr):$/;"	m	class:Tracer
+_get_new_input	exploration.py	/^    def _get_new_input(self, ctx):$/;"	m	class:Exploration
+_honey_pot	tracer.py	/^    def _honey_pot(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_hooking_handler	tracer.py	/^    def _hooking_handler(self, ctx, last_call_instruction):$/;"	m	class:Tracer
+_libc_main_handler	tracer.py	/^    def _libc_main_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_load_binary	tracer.py	/^    def _load_binary(self, ctx):$/;"	m	class:Tracer
+_make_relocation	tracer.py	/^    def _make_relocation(self, ctx):$/;"	m	class:Tracer
+_malloc_handler	tracer.py	/^    def _malloc_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_memory_callback	tracer.py	/^    def _memory_callback(self, name, ctx, base_addr, inputs, last_call_instruction, loop_round, /;"	m	class:Tracer
+_printf_handler	tracer.py	/^    def _printf_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_puts_handler	tracer.py	/^    def _puts_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_register_callback	tracer.py	/^    def _register_callback(self, inputs, register, last_call_instruction=None, min_loop=None):$/;"	m	class:Tracer
+_resolve_last_path_constraint	exploration.py	/^    def _resolve_last_path_constraint(self, ctx):$/;"	m	class:Exploration
+_scanf_handler	tracer.py	/^    def _scanf_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_start_callback	tracer.py	/^    def _start_callback(self):$/;"	m	class:Tracer
+_strlen_handler	tracer.py	/^    def _strlen_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+_stroul_handler	tracer.py	/^    def _stroul_handler(self, ctx, pc, last_call_instruction):$/;"	m	class:Tracer
+add_end_callback	tracer.py	/^    def add_end_callback(self, end_func):$/;"	m	class:Tracer
+add_fuzz_inputs	exploration.py	/^    def add_fuzz_inputs(self, dst_addr, inputs):$/;"	m	class:Exploration
+add_instruction_callback	tracer.py	/^    def add_instruction_callback(self, emulate_func):$/;"	m	class:Tracer
+add_memory_callback	tracer.py	/^    def add_memory_callback(self, memory_func):$/;"	m	class:Tracer
+add_register_callback	tracer.py	/^    def add_register_callback(self, register_func):$/;"	m	class:Tracer
+add_start_callback	tracer.py	/^    def add_start_callback(self, start_func):$/;"	m	class:Tracer
+console_handler	command.py	/^console_handler = logging.StreamHandler()$/;"	v
+console_handler	exploration.py	/^console_handler = logging.StreamHandler()$/;"	v
+console_handler	fuzz.py	/^console_handler = logging.StreamHandler()$/;"	v
+console_handler	tracer.py	/^console_handler = logging.StreamHandler()$/;"	v
+emulate	tracer.py	/^    def emulate(self, ctx, pc):$/;"	m	class:Tracer
+end	exploration.py	/^    def end(self, ctx, lap, is_loop):$/;"	m	class:Exploration
+end	fuzz.py	/^    def end(self, ctx, lap, isLoop):$/;"	m	class:Fuzz
+fuzz_memory	fuzz.py	/^    def fuzz_memory(self, name, ctx, base_addr, inputs, last_call_instruction, loop_round, min_v/;"	m	class:Fuzz
+fuzz_register	fuzz.py	/^    def fuzz_register(self, name, ctx, inputs, register, last_call_instruction, is_input_needed,/;"	m	class:Fuzz
+get_fuzz_inputs	exploration.py	/^    def get_fuzz_inputs(self, dst_addr, fuzz_inputs, step):$/;"	m	class:Exploration
+get_instruction	exploration.py	/^    def get_instruction(self, inst, taken_addr, untaken_addr):$/;"	m	class:Exploration
+get_instruction	fuzz.py	/^    def get_instruction(self, inst, taken_addr, untaken_addr):$/;"	m	class:Fuzz
+get_memory_input	exploration.py	/^    def get_memory_input(self, last_call_address, select_addr, loop_round):$/;"	m	class:Exploration
+get_memory_input_to_address	exploration.py	/^    def get_memory_input_to_address(self, dst_address, last_call_address, select_addr):$/;"	m	class:Exploration
+get_memory_input_to_address	fuzz.py	/^    def get_memory_input_to_address(self, last_call_address, select_addr):$/;"	m	class:Fuzz
+get_register_input	exploration.py	/^    def get_register_input(self, last_call_address, loop_round, default):$/;"	m	class:Exploration
+get_register_input_to_address	fuzz.py	/^    def get_register_input_to_address(self, last_call_address, loop_round, default):$/;"	m	class:Fuzz
+get_untaken_branch	exploration.py	/^    def get_untaken_branch(self):$/;"	m	class:Exploration
+is_all_path_reach	exploration.py	/^    def is_all_path_reach(self):$/;"	m	class:Exploration
+is_text_section	tracer.py	/^    def is_text_section(self, addr):$/;"	m	class:Tracer
+main	binary_test/testFuzz10.c	/^int main(int argc, const char *argv[]) {$/;"	f	typeref:typename:int
+main	command.py	/^def main():$/;"	f
+mutate	fuzz.py	/^    def mutate(self, payload, count, generate):$/;"	m	class:Fuzz
+printRegisters	tracer.py	/^    def printRegisters(self, ctx):$/;"	m	class:Tracer
+printSymVar	tracer.py	/^    def printSymVar(self):$/;"	m	class:Tracer
+program_name	command.py	/^program_name = '.\/binary_test\/testFuzz10'$/;"	v
+readW	binary_test/testFuzz10.c	/^char * readW()$/;"	f	typeref:typename:char *
+save_exploration_to_file	exploration.py	/^    def save_exploration_to_file(self, dst_addr):$/;"	m	class:Exploration
+send_to_fuzz	command.py	/^def send_to_fuzz(entrypoint, exploration_memory, exploration_registers, from_memory_addr, dst_ad/;"	f
+show_backtrace	tracer.py	/^    def show_backtrace(self):$/;"	m	class:Tracer
+show_dest_path	exploration.py	/^    def show_dest_path(self):$/;"	m	class:Exploration
+show_exploration	exploration.py	/^    def show_exploration(self, specific_branch=None):$/;"	m	class:Exploration
+start	exploration.py	/^    def start(self, logger):$/;"	m	class:Exploration
+start	fuzz.py	/^    def start(self, logger):$/;"	m	class:Fuzz
+start	tracer.py	/^    def start(self, ctx, maximum_lap, entrypoint=None):$/;"	m	class:Tracer
+symbolized_memory_input	exploration.py	/^    def symbolized_memory_input(self, name, ctx, base_addr, inputs, last_call_instruction, loop_/;"	m	class:Exploration
+symbolized_register_input	exploration.py	/^    def symbolized_register_input(self, name, ctx, inputs, register, last_call_instruction, is_i/;"	m	class:Exploration
+test	README.md	/^## test$/;"	s
+tracer_init	tracer.py	/^    def tracer_init(self, ctx):$/;"	m	class:Tracer
+vulnerable	binary_test/testFuzz10.c	/^int vulnerable(const char *arg) {$/;"	f	typeref:typename:int
+vulnerable2	binary_test/testFuzz10.c	/^int vulnerable2()$/;"	f	typeref:typename:int

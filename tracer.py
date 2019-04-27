@@ -262,7 +262,7 @@ class Tracer(object):
             if ret_value < 0:
                 break
 
-            if inst.getType() == OPCODE.HLT:
+            if inst.getType() == OPCODE.AARCH64.HLT:
                 break
 
             # Simulate routines
