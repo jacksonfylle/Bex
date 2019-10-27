@@ -262,7 +262,7 @@ class Tracer(object):
             if ret_value < 0:
                 break
 
-            if inst.getType() == OPCODE.AARCH64.HLT:
+            if inst.getType() == OPCODE.X86.HLT:
                 break
 
             # Simulate routines
@@ -535,7 +535,7 @@ class Tracer(object):
             l += 1
 
         s = ctx.getConcreteMemoryAreaValue(addr, l)
-        from_memory_data = {'base_addr':addr}
+        from_memory_data = {'base_addr': addr}
         if s.isdigit() is True:
             ret_value = self._register_callback(self.custom_relocation[pc][0], ctx, int(s), ctx.registers.rax, last_call_instruction, True, addr, self._count_loop(last_call_instruction), 0, None)
 

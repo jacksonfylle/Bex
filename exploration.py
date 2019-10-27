@@ -283,8 +283,10 @@ class Exploration(object):
                             nodeList = [previous_constraints, branch['constraint']]
                             LOGGER.debug("New branch destination Address 0x%08x", branch['dstAddr'])
 
+                            # pdb.set_trace()
                             # Add constraint on sym_var
                             for symName, node in self.added_constraint_node.items():
+                                # if str(ctx.unrollAst(branch['constraint'])).find(symName) != -1 or str(ctx.unrollAst(previous_constraints)).find(symName) != -1:
                                 if str(ctx.getAstContext().unrollAst(branch['constraint'])).find(symName) != -1 or str(ctx.getAstContext().unrollAst(previous_constraints)).find(symName) != -1:
                                     # add node to constraint
                                     nodeList.append(node)
@@ -297,7 +299,7 @@ class Exploration(object):
                                     # Get the symbolic variable assigned to the model
                                     sym_var = ctx.getSymbolicVariableFromId(k)
                                     json_comment = json.loads(sym_var.getComment())
-                                    seed.setdefault(branch['dstAddr'], {}).update({sym_var.getOrigin(): v.getValue()})
+                                    seed.setdefault(branch['dstAddr'], {}).update({sym_var.getType(): v.getValue()})
                                     if sym_var.getType() == SYMBOLIC.REGISTER_VARIABLE:
                                         if json_comment['base_addr']:
                                             # Need to convert Symbolic Register to Symbolic Mem (examples atoi)
@@ -526,7 +528,7 @@ class Exploration(object):
         if dst_address != 0:
             self.dst_path_counter.update({dst_address})
             if self.dst_path_counter[dst_address] >= 3:
-                LOGGER.info("Destination Path Try Number : %d", self.dst_path_counter)
+                LOGGER.info("Destination Path Try Number : %s", self.dst_path_counter[dst_address])
                 pdb.set_trace()
                 try:
                     self.exploration_memory[dst_address].update({'unreachable': True})
